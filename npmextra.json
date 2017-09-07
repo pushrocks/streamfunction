@@ -2,6 +2,7 @@
   "npmci": {
     "globalNpmTools": [
       "npmts"
-    ]
+    ],
+    "githubMirror": "pushrocks/streamfunction"
   }
 }
