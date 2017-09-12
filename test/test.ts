@@ -1,8 +1,17 @@
 import { expect, tap } from 'tapbundle'
 import * as streamfunction from '../ts/index'
+import * as streamfs from 'streamfs'
 
-tap.test('first test', async () => {
-  console.log(streamfunction.standardExport)
+
+tap.test('should handle a read stream', async () => {
+  let counter = 0
+  streamfs.createReadStream('./test/readabletext.txt')
+    .pipe(streamfunction.createDuplexStream(async (chunkStringArg: string) => {
+      // do something with the stream here
+      console.log(`Chunk #${counter}: ${chunkStringArg}`)
+      let result = ''
+      return result
+    }))
 })
 
 tap.start()
