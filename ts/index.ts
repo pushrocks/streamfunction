@@ -9,11 +9,11 @@ export interface IStreamTools {
   truncate: ITruncateFunc
 }
 
-export interface IStreamFunction {
-  (stringChunkArg: string, toolsArg: IStreamTools): Promise<string>
+export interface IStreamFunction<T,rT> {
+  (stringChunkArg: T, toolsArg: IStreamTools): Promise<rT>
 }
 
-export let createDuplexStream = (funcArg: IStreamFunction) => {
+export let createDuplexStream = <T,rT>(funcArg: IStreamFunction<T,rT>) => {
   return plugins.through2.obj((chunk, enc, cb) => {
     let truncated = false
     let tools: IStreamTools = {
@@ -23,7 +23,7 @@ export let createDuplexStream = (funcArg: IStreamFunction) => {
       }
     }
     let asyncWrapper = async () => {
-      let resultChunk: string = await funcArg(chunk, tools)
+      let resultChunk: rT = await funcArg(chunk, tools)
       if (!truncated) {
         cb(null, resultChunk)
       }

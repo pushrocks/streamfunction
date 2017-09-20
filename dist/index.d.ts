@@ -6,7 +6,7 @@ export interface ITruncateFunc {
 export interface IStreamTools {
     truncate: ITruncateFunc;
 }
-export interface IStreamFunction {
-    (stringChunkArg: string, toolsArg: IStreamTools): Promise<string>;
+export interface IStreamFunction<T, rT> {
+    (stringChunkArg: T, toolsArg: IStreamTools): Promise<rT>;
 }
-export declare let createDuplexStream: (funcArg: IStreamFunction) => Transform;
+export declare let createDuplexStream: <T, rT>(funcArg: IStreamFunction<T, rT>) => Transform;
