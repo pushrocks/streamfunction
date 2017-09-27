@@ -17,12 +17,12 @@ tap.test('should handle a read stream', async () => {
 
 tap.test('should create a valid Intake', async () => {
   testIntake = new streamfunction.Intake<string>()
-  testIntake.pushData('hi')
   testIntake.getReadable().pipe(
     streamfs.createWriteStream('./test/writabletext.txt')
   )
+  testIntake.pushData('hi')
   testIntake.pushData('wow')
-  testIntake.signalEnd()
+  // testIntake.signalEnd()
 })
 
 tap.start()

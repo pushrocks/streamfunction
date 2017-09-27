@@ -14,7 +14,9 @@
     "tapbundle": "^1.1.1"
   },
   "dependencies": {
+    "@types/from2": "^2.3.0",
     "@types/through2": "^2.0.33",
+    "from2": "^2.3.0",
     "through2": "^2.0.3",
     "typings-global": "^1.0.20"
   }
