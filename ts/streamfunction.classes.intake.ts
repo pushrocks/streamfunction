@@ -10,6 +10,7 @@ export class Intake<T> {
     for (let chunkItem of localChunkStore) {
       next(null, chunkItem)
     }
+    this.push = next
   })
 
   constructor () {
