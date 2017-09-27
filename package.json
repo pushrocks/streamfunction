@@ -1,6 +1,6 @@
 {
   "name": "streamfunction",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "use async functions as pipestops for node streams",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
