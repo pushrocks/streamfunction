@@ -24,13 +24,19 @@ export interface IStreamEndFunction<rT> {
 }
 
 export interface IStreamOptions {
-  objectMode: boolean
+  objectMode?: boolean
+  readableObjectMode?: boolean
+  writableObjectMode?: boolean
 }
 
 export let createDuplexStream = function <T,rT> (
   funcArg: IStreamFunction<T,rT>,
   endFuncArg?: IStreamEndFunction<rT>,
-  optionsArg: IStreamOptions = {objectMode: true}
+  optionsArg: IStreamOptions = {
+    objectMode: false,
+    readableObjectMode: true,
+    writableObjectMode: true
+  }
 ) {
   return plugins.through2(optionsArg, function (chunk, enc, cb) {
     let truncated = false
