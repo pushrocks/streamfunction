@@ -58,5 +58,6 @@ export let createDuplexStream = function <T,rT> (funcArg: IStreamFunction<T,rT>,
       }
       cb()
     }
+    asyncWrapper()
   })
 }
