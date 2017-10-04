@@ -41,8 +41,7 @@ tap.test('should create a valid Intake', async () => {
   )
   testIntake.pushData('hi')
   testIntake.pushData('wow')
-  testIntake.pushData(null)
-  // testIntake.signalEnd()
+  testIntake.signalEnd()
 })
 
 tap.start()
