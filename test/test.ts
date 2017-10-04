@@ -7,11 +7,14 @@ let testIntake: streamfunction.Intake<string>
 tap.test('should handle a read stream', async () => {
   let counter = 0
   streamfs.createReadStream('./test/readabletext.txt')
-    .pipe(streamfunction.createDuplexStream<string,string>(async (chunkStringArg: string) => {
+    .pipe(streamfunction.createDuplexStream<Buffer,string>(async (chunkStringArg: Buffer, tools) => {
       // do something with the stream here
-      console.log(`Chunk #${counter}: ${chunkStringArg}`)
-      let result = ''
+      let result = chunkStringArg.toString().substr(0,100)
+      tools.pipeMore('wow =========== \n')
       return result
+    })).pipe(streamfunction.createDuplexStream<string,string>(async (chunkStringArg) => {
+      console.log(chunkStringArg)
+      return chunkStringArg
     }))
 })
 

@@ -20,7 +20,7 @@ export interface IStreamFunction<T,rT> {
 }
 
 export let createDuplexStream = function <T,rT> (funcArg: IStreamFunction<T,rT>) {
-  return plugins.through2.obj((chunk, enc, cb) => {
+  return plugins.through2.obj(function (chunk, enc, cb) {
     let truncated = false
     let tools: IStreamTools = {
       truncate: () => {
