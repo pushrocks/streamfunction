@@ -389,6 +389,15 @@ smartshell@^1.0.6:
     typings-global "^1.0.20"
     which "^1.3.0"
 
+smartstream@^1.0.10:
+  version "1.0.10"
+  resolved "https://registry.yarnpkg.com/smartstream/-/smartstream-1.0.10.tgz#151c29630582cf6b2a08f387f6765ad3040708c9"
+  dependencies:
+    "@types/through2" "^2.0.33"
+    smartq "^1.1.1"
+    through2 "^2.0.3"
+    typings-global "^1.0.19"
+
 streamfs@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/streamfs/-/streamfs-1.0.6.tgz#e0c7f2a12de7dabf073ae03d4ff9e12f4e4d7920"

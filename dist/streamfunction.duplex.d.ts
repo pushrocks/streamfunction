@@ -16,4 +16,7 @@ export interface IStreamFunction<T, rT> {
 export interface IStreamEndFunction<rT> {
     (toolsArg: IStreamTools): Promise<rT>;
 }
-export declare let createDuplexStream: <T, rT>(funcArg: IStreamFunction<T, rT>, endFuncArg?: IStreamEndFunction<rT>) => Transform;
+export interface IStreamOptions {
+    objectMode: boolean;
+}
+export declare let createDuplexStream: <T, rT>(funcArg: IStreamFunction<T, rT>, endFuncArg?: IStreamEndFunction<rT>, optionsArg?: IStreamOptions) => Transform;

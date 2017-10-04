@@ -23,8 +23,16 @@ export interface IStreamEndFunction<rT> {
   (toolsArg: IStreamTools): Promise<rT>
 }
 
-export let createDuplexStream = function <T,rT> (funcArg: IStreamFunction<T,rT>, endFuncArg?: IStreamEndFunction<rT>) {
-  return plugins.through2.obj(function (chunk, enc, cb) {
+export interface IStreamOptions {
+  objectMode: boolean
+}
+
+export let createDuplexStream = function <T,rT> (
+  funcArg: IStreamFunction<T,rT>,
+  endFuncArg?: IStreamEndFunction<rT>,
+  optionsArg: IStreamOptions = {objectMode: true}
+) {
+  return plugins.through2(optionsArg, function (chunk, enc, cb) {
     let truncated = false
     let tools: IStreamTools = {
       truncate: () => {
@@ -41,7 +49,9 @@ export let createDuplexStream = function <T,rT> (funcArg: IStreamFunction<T,rT>,
         cb(null, resultChunk)
       }
     }
-    asyncWrapper()
+    asyncWrapper().catch(err => {
+      console.log(err)
+    })
   }, function (cb) {
     let tools: IStreamTools = {
       truncate: () => {
@@ -58,6 +68,8 @@ export let createDuplexStream = function <T,rT> (funcArg: IStreamFunction<T,rT>,
       }
       cb()
     }
-    asyncWrapper()
+    asyncWrapper().catch(err => {
+      console.log(err)
+    })
   })
 }

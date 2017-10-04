@@ -10,6 +10,7 @@
     "test": "(npmts)"
   },
   "devDependencies": {
+    "smartstream": "^1.0.10",
     "streamfs": "^1.0.6",
     "tapbundle": "^1.1.1"
   },
