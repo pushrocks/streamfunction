@@ -1,8 +1,8 @@
 /// <reference types="node" />
 export declare class Intake<T> {
     chunkStore: T[];
-    push: any;
-    readable: NodeJS.ReadableStream;
+    private push;
+    private readable;
     constructor();
     getReadable(): NodeJS.ReadableStream;
     pushData(chunkData: T): void;

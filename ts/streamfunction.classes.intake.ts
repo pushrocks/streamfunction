@@ -3,8 +3,8 @@ import * as plugins from './streamfunction.plugins'
 
 export class Intake<T> {
   chunkStore: T[] = []
-  push: any
-  readable = plugins.from2.obj((size, next) => {
+  private push: any
+  private readable = plugins.from2.obj((size, next) => {
     let localChunkStore = this.chunkStore
     this.chunkStore = []
     for (let chunkItem of localChunkStore) {
