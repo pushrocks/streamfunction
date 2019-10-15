@@ -1,19 +1,19 @@
-import { expect, tap } from 'tapbundle';
+import { expect, tap } from '@pushrocks/tapbundle';
 import * as streamfunction from '../ts/index';
-import * as streamfs from 'streamfs';
+import * as streamfs from '@pushrocks/streamfs';
 
-import * as smartstream from 'smartstream';
+import * as smartstream from '@pushrocks/smartstream';
 
 let testIntake: streamfunction.Intake<string>;
 
 tap.test('should handle a read stream', async () => {
-  let counter = 0;
-  let testSmartstream = new smartstream.Smartstream([
+  const counter = 0;
+  const testSmartstream = new smartstream.Smartstream([
     streamfs.createReadStream('./test/readabletext.txt'),
     streamfunction.createDuplexStream<Buffer, Buffer>(
       async (chunkStringArg: Buffer, tools) => {
         // do something with the stream here
-        let result = chunkStringArg.toString().substr(0, 100);
+        const result = chunkStringArg.toString().substr(0, 100);
         tools.pipeMore('wow =========== \n');
         return Buffer.from(result);
       },

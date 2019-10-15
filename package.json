@@ -14,7 +14,7 @@
     "@gitzone/tsbuild": "^2.1.17",
     "@gitzone/tstest": "^1.0.28",
     "@pushrocks/smartstream": "^1.0.14",
-    "@pushrocks/streamfs": "^1.0.6",
+    "@pushrocks/streamfs": "^1.0.10",
     "@pushrocks/tapbundle": "^3.0.13",
     "tslint": "^5.20.0",
     "tslint-config-prettier": "^1.18.0"
