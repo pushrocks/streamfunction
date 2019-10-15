@@ -1,8 +1,16 @@
 {
   "npmci": {
-    "npmGlobalTools": [
-      "npmts"
-    ],
-    "githubMirror": "pushrocks/streamfunction"
+    "npmGlobalTools": [],
+    "npmAccessLevel": "public"
+  },
+  "gitzone": {
+    "module": {
+      "githost": "gitlab.com",
+      "gitscope": "pushrocks",
+      "gitrepo": "streamfunction",
+      "shortDescription": "use async functions as pipestops for node streams",
+      "npmPackagename": "@pushrocks/streamfunction",
+      "license": "MIT"
+    }
   }
 }

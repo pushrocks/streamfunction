@@ -1,5 +1,5 @@
 {
-  "name": "streamfunction",
+  "name": "@pushrocks/streamfunction",
   "version": "1.0.18",
   "description": "use async functions as pipestops for node streams",
   "main": "dist/index.js",
@@ -7,18 +7,34 @@
   "author": "Lossless GmbH",
   "license": "MIT",
   "scripts": {
-    "test": "(npmts)"
+    "test": "tstest test/",
+    "build": "tsbuild"
   },
   "devDependencies": {
-    "smartstream": "^1.0.10",
-    "streamfs": "^1.0.6",
-    "tapbundle": "^1.1.1"
+    "@gitzone/tsbuild": "^2.1.17",
+    "@gitzone/tstest": "^1.0.28",
+    "@pushrocks/smartstream": "^1.0.14",
+    "@pushrocks/streamfs": "^1.0.6",
+    "@pushrocks/tapbundle": "^3.0.13",
+    "tslint": "^5.20.0",
+    "tslint-config-prettier": "^1.18.0"
   },
   "dependencies": {
     "@types/from2": "^2.3.0",
-    "@types/through2": "^2.0.33",
+    "@types/through2": "^2.0.34",
     "from2": "^2.3.0",
-    "through2": "^2.0.3",
-    "typings-global": "^1.0.20"
-  }
+    "through2": "^3.0.1"
+  },
+  "private": true,
+  "files": [
+    "ts/**/*",
+    "ts_web/**/*",
+    "dist/**/*",
+    "dist_web/**/*",
+    "dist_ts_web/**/*",
+    "assets/**/*",
+    "cli.js",
+    "npmextra.json",
+    "readme.md"
+  ]
 }
