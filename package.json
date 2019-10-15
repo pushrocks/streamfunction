@@ -1,6 +1,6 @@
 {
   "name": "@pushrocks/streamfunction",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "use async functions as pipestops for node streams",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
