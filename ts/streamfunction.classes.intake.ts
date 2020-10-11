@@ -3,10 +3,10 @@ import * as plugins from './streamfunction.plugins';
 export class Intake<T> {
   chunkStore: T[] = [];
   private push: any;
-  private readable = plugins.from2.obj((size, next) => {
-    let localChunkStore = this.chunkStore;
+  private readableStream = plugins.from2.obj((size, next) => {
+    const localChunkStore = this.chunkStore;
     this.chunkStore = [];
-    for (let chunkItem of localChunkStore) {
+    for (const chunkItem of localChunkStore) {
       next(null, chunkItem);
     }
     this.push = next;
@@ -18,8 +18,19 @@ export class Intake<T> {
     };
   }
 
+  /**
+   * returns a new style readble stream
+   */
   getReadable() {
-    return this.readable;
+    const readable = new plugins.stream.Readable();
+    return readable.wrap(this.readableStream);
+  }
+
+  /**
+   * returns an oldstyke readble stream
+   */
+  getReadableStream() {
+    return this.readableStream;
   }
 
   pushData(chunkData: T) {

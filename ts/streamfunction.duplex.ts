@@ -29,55 +29,55 @@ export interface IStreamOptions {
   writableObjectMode?: boolean;
 }
 
-export let createDuplexStream = function<T, rT>(
+export let createDuplexStream = <T, rT>(
   funcArg: IStreamFunction<T, rT>,
   endFuncArg?: IStreamEndFunction<rT>,
   optionsArg: IStreamOptions = {
     objectMode: false,
     readableObjectMode: true,
-    writableObjectMode: true
+    writableObjectMode: true,
   }
-) {
+) => {
   return plugins.through2(
     optionsArg,
-    function(chunk, enc, cb) {
+    function (chunk, enc, cb) {
       let truncated = false;
-      let tools: IStreamTools = {
+      const tools: IStreamTools = {
         truncate: () => {
           truncated = true;
           cb(null, null);
         },
-        pipeMore: pipeObject => {
+        pipeMore: (pipeObject) => {
           this.push(pipeObject);
-        }
+        },
       };
-      let asyncWrapper = async () => {
-        let resultChunk: rT = await funcArg(chunk, tools);
+      const asyncWrapper = async () => {
+        const resultChunk: rT = await funcArg(chunk, tools);
         if (!truncated) {
           cb(null, resultChunk);
         }
       };
-      asyncWrapper().catch(err => {
+      asyncWrapper().catch((err) => {
         console.log(err);
       });
     },
-    function(cb) {
-      let tools: IStreamTools = {
+    function (cb) {
+      const tools: IStreamTools = {
         truncate: () => {
           cb();
         },
-        pipeMore: pushArg => {
+        pipeMore: (pushArg) => {
           this.push(pushArg);
-        }
+        },
       };
-      let asyncWrapper = async () => {
+      const asyncWrapper = async () => {
         if (endFuncArg) {
-          let result = await endFuncArg(tools);
+          const result = await endFuncArg(tools);
           this.push(result);
         }
         cb();
       };
-      asyncWrapper().catch(err => {
+      asyncWrapper().catch((err) => {
         console.log(err);
       });
     }

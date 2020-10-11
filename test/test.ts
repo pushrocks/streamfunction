@@ -17,17 +17,17 @@ tap.test('should handle a read stream', async () => {
         tools.pipeMore('wow =========== \n');
         return Buffer.from(result);
       },
-      async tools => {
+      async (tools) => {
         // tools.pipeMore('hey, this is the end')
         return Buffer.from('this is the end');
       },
       { objectMode: false }
     ),
-    streamfunction.createDuplexStream<Buffer, string>(async chunkStringArg => {
+    streamfunction.createDuplexStream<Buffer, string>(async (chunkStringArg) => {
       console.log(chunkStringArg.toString());
       return null;
     }),
-    smartstream.cleanPipe()
+    smartstream.cleanPipe(),
   ]);
   await testSmartstream.run();
 });
@@ -38,7 +38,7 @@ tap.test('should create a valid Intake', async () => {
     .getReadable()
     .pipe(
       streamfunction.createDuplexStream(
-        async chunkString => {
+        async (chunkString) => {
           return chunkString;
         },
         async () => {
